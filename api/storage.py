@@ -43,7 +43,7 @@ def upload(msg: dict, public_key: bytes) -> Tuple[Any, Any]:
     :param private_key: The private_key to encrypt the file with
     :return: The contents of the filename which was previously uploaded
     """
-    manifest_ = json.dumps(msg, sort_keys=True, ensure_ascii=True)
+    manifest_ = json.dumps(msg, ensure_ascii=True)
     hash_ = hashlib.sha1(manifest_.encode('utf-8')).hexdigest()
     key = API.add_bytes(_encrypt(public_key, manifest_))
     return hash_, key
